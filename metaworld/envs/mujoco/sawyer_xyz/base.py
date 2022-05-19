@@ -21,12 +21,15 @@ class SawyerMocapBase(MujocoEnv, Serializable, metaclass=abc.ABCMeta):
     """
     mocap_low = np.array([-0.2, 0.5, 0.06])
     mocap_high = np.array([0.2, 0.7, 0.6])
+    
 
     def __init__(self, model_name, frame_skip=20):
         MujocoEnv.__init__(self, model_name, frame_skip=frame_skip)
         self.reset_mocap_welds()
+        
 
     def get_endeff_pos(self):
+        # print(self.data.get_body_xpos('hand'))
         return self.data.get_body_xpos('hand').copy()
 
     def get_gripper_pos(self):
@@ -65,6 +68,7 @@ class SawyerMocapBase(MujocoEnv, Serializable, metaclass=abc.ABCMeta):
         sim.forward()
 
 
+
 class SawyerXYZEnv(SawyerMocapBase, metaclass=abc.ABCMeta):
     def __init__(
             self,
@@ -98,6 +102,7 @@ class SawyerXYZEnv(SawyerMocapBase, metaclass=abc.ABCMeta):
 
     def set_xyz_action(self, action):
         action = np.clip(action, -1, 1)
+        # print(action)
         pos_delta = action * self.action_scale
         new_mocap_pos = self.data.mocap_pos + pos_delta[None]
 

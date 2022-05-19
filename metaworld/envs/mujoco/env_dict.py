@@ -227,3 +227,4 @@ for key, env_cls in HARD_MODE_CLS_DICT['train'].items():
     HARD_MODE_ARGS_KWARGS['train'][key] = _hard_mode_args_kwargs(env_cls, key)
 for key, env_cls in HARD_MODE_CLS_DICT['test'].items():
     HARD_MODE_ARGS_KWARGS['test'][key] = _hard_mode_args_kwargs(env_cls, key)
+

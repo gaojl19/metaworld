@@ -15,6 +15,8 @@ Usage:
 
 <mujoco model="sawyer">
     <camera pos="0 0 3.2" name="topview" />
+    <camera pos="-2 2 1" euler="-1.2 0 0.8" name="leftview" />
+    <camera pos="0 2.8 0.2" euler="-1.5 0 0" name="frontview" />
 
     <geom name="floor" type="plane" pos="0 0 -.9" size="10 10 0.5"
           rgba="0 0 0 1" contype="15" conaffinity="15" />

@@ -1,3 +1,4 @@
+from inspect import FullArgSpec
 import os
 
 import glfw
@@ -28,7 +29,9 @@ class MujocoEnv(gym.Env):
 			fullpath = os.path.join(os.path.dirname(__file__), "assets", model_path)
 		if not path.exists(fullpath):
 			raise IOError("File %s does not exist" % fullpath)
+		# print("path: ", fullpath)
 		self.frame_skip = frame_skip
+        
 		self.model = mujoco_py.load_model_from_path(fullpath)
 		self.sim = mujoco_py.MjSim(self.model)
 		self.data = self.sim.data
@@ -162,7 +165,7 @@ class MujocoEnv(gym.Env):
 			self.sim.data.qpos.flat,
 			self.sim.data.qvel.flat
 		])
-
+ 
 	def get_image(self, width=84, height=84, camera_name=None):
 		return self.sim.render(
 			width=width,
